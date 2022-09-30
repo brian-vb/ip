@@ -53,12 +53,19 @@ public class Duke {
 
     public static void addTodo(ArrayList<Task> tasks, String command) {
         printLine();
-        Todo newTask = new Todo(command.substring(5));
-        tasks.add(newTask);
-        System.out.println("    Got it. I've added this task:");
-        System.out.println("    " + newTask.getTaskDetails());
-        System.out.println("    Now you have " + tasks.size() + " tasks in the list.");
-        printLine();
+        String instruction = command.substring(5);
+        if (instruction.equals("todo")) {
+            printLine();
+            System.out.println("    Oh no! You need a description for your task!");
+            printLine();
+        } else {
+            Todo newTask = new Todo(instruction);
+            tasks.add(newTask);
+            System.out.println("    Got it. I've added this task:");
+            System.out.println("    " + newTask.getTaskDetails());
+            System.out.println("    Now you have " + tasks.size() + " tasks in the list.");
+            printLine();
+        }
     }
 
     public static Command parseCommand(String input) {
